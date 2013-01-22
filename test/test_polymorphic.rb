@@ -18,6 +18,11 @@ class TestPolymorphic < ActiveSupport::TestCase
     assert_equal 'andrew', first_comment.person_id
   end
 
+  def test_polymorphic_composite_has_one
+    version = Post.find(1, 1).first_version
+    assert_equal Version.find(1, 'Post', 1), version
+  end
+
   def test_has_many_through
     user = users(:santiago)
     article_names = user.articles.collect { |a| a.name }.sort
