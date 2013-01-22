@@ -191,4 +191,11 @@ create table posts (
   created_at datetime not null,
   updated_at datetime not null,
   primary key  (id, version)
-) type=InnoDB DEFAULT CHARSET=latin1
+) type=InnoDB;
+
+create table versions (
+  model_id int(11) not null,
+  model_type varchar(255) not null,
+  version int(11) not null default '1',
+  primary key  (model_id, model_type, version)
+) type=InnoDB;

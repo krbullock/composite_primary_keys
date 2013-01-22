@@ -208,4 +208,22 @@ create table products_restaurants (
   franchise_id int not null,
   store_id int not null
 );
-  
+
+create sequence public.posts_seq start 1000;
+
+create table posts (
+  id int not null default nextval('public.posts_seq'),
+  version int not null default '1',
+  title varchar(255) default null,
+  body text,
+  created_at timestamp not null,
+  updated_at timestamp not null,
+  primary key  (id, version)
+);
+
+create table versions (
+  model_id int not null,
+  model_type varchar(255) not null,
+  version int not null default '1',
+  primary key  (model_id, model_type, version)
+);

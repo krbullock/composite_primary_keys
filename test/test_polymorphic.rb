@@ -1,11 +1,16 @@
 require 'abstract_unit'
 
 class TestPolymorphic < ActiveSupport::TestCase
-  fixtures :users, :employees, :comments, :hacks
+  fixtures :users, :employees, :comments, :hacks, :posts, :versions
   
   def test_polymorphic_has_many
     comments = Hack.find('andrew').comments
     assert_equal 'andrew', comments[0].person_id
+  end
+
+  def test_polymorphic_composite_has_many
+    versions = Post.find(1, 1).versions
+    assert_equal Version.find(1, 'Post', 1), versions.first
   end
 
   def test_polymorphic_has_one

@@ -1,0 +1,5 @@
+one:
+  id: 1
+  version: 1
+  title: 'First post'
+  body: 'Hello, world!'
